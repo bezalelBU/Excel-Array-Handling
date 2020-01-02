@@ -1,9 +1,9 @@
 package sample;
+
 import java.io.FileInputStream;
 import java.util.*;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -33,20 +33,21 @@ public class ExcelHandling {
 
         try {
             //Write the workbook in file system
-            FileOutputStream out = new FileOutputStream(new File("C:\\Users\\katly\\OneDrive\\Documents\\" + excelPath + ".xlsx"));
+            FileOutputStream out = new FileOutputStream(new File(excelPath));
             workbook.write(out);
             out.close();
-            System.out.println(excelPath + ".xlsx written successfully on disk.");
+            System.out.println(excelPath + "written successfully on disk.");
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     //readExcel takes an excel file path and reads the contents into an array, and then returns it.
     public static String[][] readExcel(String rFilePath) {
         String[][] stringArray = new String[0][];
         try {
             int cn = 0;
-            FileInputStream rFile = new FileInputStream(new File(rFilePath + ".xlsx"));
+            FileInputStream rFile = new FileInputStream(new File(rFilePath));
             XSSFWorkbook rWorkbook = new XSSFWorkbook(rFile);
             XSSFSheet rSheet = rWorkbook.getSheetAt(cn);
             Iterator<Row> rowIterator = rSheet.iterator();
